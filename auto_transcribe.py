@@ -86,7 +86,10 @@ def check_dependencies():
         return True
     
     except FileNotFoundError as e:
-        log(f"ERROR: Dependency check failed: {str(e)}")
+        # More user-friendly error message
+        missing = "WhisperX" if "whisperx" in str(e).lower() else "FFmpeg"
+        log(f"ERROR: {missing} not found. Please install it before running.")
+        log(f"  Details: {str(e)}")
         return False
     except Exception as e:
         log(f"ERROR during dependency check: {str(e)}")
