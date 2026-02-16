@@ -32,6 +32,7 @@ ARCHIVE_FOLDER = "archive"
 LOG_FOLDER = "logs"
 WHISPER_MODEL = "medium"  # Options: tiny, base, small, medium, large-v2
 LANGUAGE = "pl"  # Polish language code
+MAX_LOG_OUTPUT_LENGTH = 200  # Maximum characters to log from command output
 # =========================
 
 
@@ -168,7 +169,7 @@ def main():
             
             # Log output if there's any important info
             if result.stdout:
-                log(f"WhisperX output: {result.stdout[:200]}")  # First 200 chars
+                log(f"WhisperX output: {result.stdout[:MAX_LOG_OUTPUT_LENGTH]}")
 
             # Move original MP3 to archive
             destination = os.path.join(date_folder, filename)
@@ -181,7 +182,7 @@ def main():
             error_count += 1
             log(f"✗ ERROR transcribing {filename}: {e}")
             if e.stderr:
-                log(f"  Error details: {e.stderr[:200]}")
+                log(f"  Error details: {e.stderr[:MAX_LOG_OUTPUT_LENGTH]}")
         
         except Exception as e:
             error_count += 1
