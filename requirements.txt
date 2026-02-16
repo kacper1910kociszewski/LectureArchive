@@ -1,0 +1,13 @@
+# WhisperX for transcription with diarization
+whisperx
+
+# PyTorch (GPU support - CUDA 11.8)
+# For GPU: Install with: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# For CPU: Use default PyPI versions
+torch
+torchvision
+torchaudio
+
+# Additional dependencies (usually installed with whisperx)
+faster-whisper
+pyannote.audio
